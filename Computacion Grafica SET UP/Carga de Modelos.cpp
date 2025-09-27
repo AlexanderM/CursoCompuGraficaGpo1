@@ -1,7 +1,7 @@
-/* 
+﻿/* 
 Nombre: Millan Gaston Alexander
-Previo 6 
-Fecha de entrega: 20 de Septiembre de 2025 
+Practica 6 
+Fecha de entrega: 26 de Septiembre de 2025 
 No. 319325483 
 */
 
@@ -63,7 +63,7 @@ int main( )
     glfwWindowHint( GLFW_RESIZABLE, GL_FALSE );
     
     // Create a GLFWwindow object that we can use for GLFW's functions
-    GLFWwindow *window = glfwCreateWindow( WIDTH, HEIGHT, "Previo 6 Alexander Millan", nullptr, nullptr );
+    GLFWwindow *window = glfwCreateWindow( WIDTH, HEIGHT, "Practica 6 Alexander Millan", nullptr, nullptr );
     
     if ( nullptr == window )
     {
@@ -103,7 +103,16 @@ int main( )
     Shader shader( "Shader/modelLoading.vs", "Shader/modelLoading.frag" );
     
     // Load models
-    Model dog((char*)"Models/Super_Mario.obj");
+    
+    Model carro((char*)"Models/Carrito/cartq.obj");
+    Model Jarra((char*)"Models/Jarra/jarra1.obj");
+    
+    /*Model pastel1((char*)"Models/Pastel1/pastel1.obj");*/
+
+    Model pastel2((char*)"Models/Pastel2/Cake.obj");
+    Model tasa((char*)"Models/Tasa/classic-mug.obj");
+    Model vasos((char*)"Models/Vasos/vasos.obj");
+
     glm::mat4 projection = glm::perspective( camera.GetZoom( ), ( float )SCREEN_WIDTH/( float )SCREEN_HEIGHT, 0.1f, 100.0f );
     
   
@@ -133,14 +142,38 @@ int main( )
         // Draw the loaded model
         glm::mat4 model(1);
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-        dog.Draw(shader);
-        
-        //model = glm::translate(model, glm::vec3(3.0f, 0.0f, 0.0f));
-        //model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
-        //glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-        //dog.Draw(shader);
 
 
+        // CARRO
+        model = glm::mat4(1.0f); // REINICIAR valor (no redeclarar)
+        model = glm::translate(model, glm::vec3(0.0f, -1.5f, 0.0f));
+        model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        carro.Draw(shader);
+
+        // JARRA
+        model = glm::mat4(1.0f); // REINICIAR valor
+        model = glm::translate(model, glm::vec3(-0.7f, 0.67f, 0.0f));
+        model = glm::scale(model, glm::vec3(0.7f, 0.7f, 0.7f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        Jarra.Draw(shader);
+
+        // TASA
+        model = glm::mat4(1.0f); // REINICIAR valor
+        model = glm::translate(model, glm::vec3(0.7f, 0.67f, 0.0f));
+        model = glm::scale(model, glm::vec3(2.5f, 2.5f, 2.5f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        tasa.Draw(shader);
+
+        // VASOS
+        model = glm::mat4(1.0f); // REINICIAR valor
+        model = glm::translate(model, glm::vec3(0.0f, -0.95f, 0.0f));
+        model = glm::scale(model, glm::vec3(0.02f, 0.02f, 0.02f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        vasos.Draw(shader);
+
+        //pastel2.Draw(shader);
+        //pastel1.Draw(shader);
         // Swap the buffers
         glfwSwapBuffers( window );
     }
