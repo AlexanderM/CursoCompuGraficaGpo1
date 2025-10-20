@@ -1,0 +1,18 @@
+# Blender 4.5.3 LTS MTL File: 'None'
+# www.blender.org
+
+newmtl GS_Office_WindowSG.002
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 1
+Pr 1.000000
+Ps 0.000000
+Pc 0.000000
+Pcr 0.030000
+aniso 0.000000
+anisor 0.000000
+map_Kd Office_Window_BaseColor.png
+map_Pm Office_Window_Metallic.png
+map_Ks Office_Window_Specular.tga
+map_d Office_Window_Opacity.png
+map_Bump -bm 1.000000 Office_Window_Normal.png
